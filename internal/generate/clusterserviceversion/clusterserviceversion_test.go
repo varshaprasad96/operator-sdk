@@ -121,7 +121,8 @@ var _ = Describe("Generating a ClusterServiceVersion", func() {
 					WithWriter(buf),
 				}
 				Expect(g.Generate(cfg, opts...)).ToNot(HaveOccurred())
-				Expect(buf.String()).To(MatchYAML(newCSVStr))
+				outputCSV := projutil.RemoveSDKStampsFromCSVString(buf.String())
+				Expect(outputCSV).To(MatchYAML(newCSVStr))
 			})
 			It("should write a ClusterServiceVersion manifest to a base file", func() {
 				g = Generator{
@@ -134,8 +135,9 @@ var _ = Describe("Generating a ClusterServiceVersion", func() {
 				}
 				Expect(g.Generate(cfg, opts...)).ToNot(HaveOccurred())
 				outputFile := filepath.Join(tmp, "bases", makeCSVFileName(operatorName))
+				outputFileContents := projutil.RemoveSDKStampsFromCSVString(string(readFileHelper(outputFile)))
 				Expect(outputFile).To(BeAnExistingFile())
-				Expect(string(readFileHelper(outputFile))).To(MatchYAML(baseCSVUIMetaStr))
+				Expect(outputFileContents).To(MatchYAML(baseCSVUIMetaStr))
 			})
 			It("should write a ClusterServiceVersion manifest to a bundle file", func() {
 				g = Generator{
@@ -150,8 +152,9 @@ var _ = Describe("Generating a ClusterServiceVersion", func() {
 				}
 				Expect(g.Generate(cfg, opts...)).ToNot(HaveOccurred())
 				outputFile := filepath.Join(tmp, bundle.ManifestsDir, makeCSVFileName(operatorName))
+				outputFileContents := projutil.RemoveSDKStampsFromCSVString(string(readFileHelper(outputFile)))
 				Expect(outputFile).To(BeAnExistingFile())
-				Expect(string(readFileHelper(outputFile))).To(MatchYAML(newCSVStr))
+				Expect(outputFileContents).To(MatchYAML(newCSVStr))
 			})
 
 			It("should write a ClusterServiceVersion manifest to a legacy base/bundle file", func() {
@@ -167,8 +170,9 @@ var _ = Describe("Generating a ClusterServiceVersion", func() {
 				}
 				Expect(g.GenerateLegacy(opts...)).ToNot(HaveOccurred())
 				outputFile := filepath.Join(tmp, bundle.ManifestsDir, makeCSVFileName(operatorName))
+				outputFileContents := projutil.RemoveSDKStampsFromCSVString(string(readFileHelper(outputFile)))
 				Expect(outputFile).To(BeAnExistingFile())
-				Expect(string(readFileHelper(outputFile))).To(MatchYAML(newCSVStr))
+				Expect(outputFileContents).To(MatchYAML(newCSVStr))
 			})
 		})
 
@@ -229,6 +233,7 @@ var _ = Describe("Generating a ClusterServiceVersion", func() {
 						getBase:      makeBaseGetter(baseCSV),
 					}
 					csv, err := g.generate()
+					projutil.RemoveSDKstampsFromCSV(csv)
 					Expect(err).ToNot(HaveOccurred())
 					Expect(csv).To(Equal(baseCSV))
 				})
@@ -240,6 +245,7 @@ var _ = Describe("Generating a ClusterServiceVersion", func() {
 						getBase:      makeBaseGetter(baseCSVUIMeta),
 					}
 					csv, err := g.generate()
+					projutil.RemoveSDKstampsFromCSV(csv)
 					Expect(err).ToNot(HaveOccurred())
 					Expect(csv).To(Equal(baseCSVUIMeta))
 				})
@@ -256,6 +262,7 @@ var _ = Describe("Generating a ClusterServiceVersion", func() {
 						getBase:      makeBaseGetter(baseCSVUIMeta),
 					}
 					csv, err := g.generate()
+					projutil.RemoveSDKstampsFromCSV(csv)
 					Expect(err).ToNot(HaveOccurred())
 					Expect(csv).To(Equal(newCSV))
 				})
