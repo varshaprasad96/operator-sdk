@@ -309,7 +309,7 @@ func doAnsibleScaffold() error {
 		return fmt.Errorf("new ansible scaffold failed: %v", err)
 	}
 
-	if err = genutil.GenerateCRDNonGo(projectName, *resource, apiFlags.CrdVersion); err != nil {
+	if err = genutil.GenerateCRDNonGo(projectName, *resource, apiFlags.CrdVersion, projutil.OperatorTypeAnsible); err != nil {
 		return err
 	}
 
@@ -401,7 +401,7 @@ func doHelmScaffold() error {
 		return fmt.Errorf("new helm scaffold failed: %v", err)
 	}
 
-	if err = genutil.GenerateCRDNonGo(projectName, *resource, apiFlags.CrdVersion); err != nil {
+	if err = genutil.GenerateCRDNonGo(projectName, *resource, apiFlags.CrdVersion, projutil.OperatorTypeHelm); err != nil {
 		return err
 	}
 
