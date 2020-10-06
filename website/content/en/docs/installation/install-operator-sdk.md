@@ -114,7 +114,7 @@ $ chmod +x helm-operator-${RELEASE_VERSION}-x86_64-apple-darwin && sudo mkdir -p
 - [git][git_tool]
 - [mercurial][mercurial_tool] version 3.9+
 - [bazaar][bazaar_tool] version 2.7.0+
-- [go][go_tool] version v1.13+.
+- [go][go_tool] version v1.15+.
 
 ```sh
 $ git clone https://github.com/operator-framework/operator-sdk
@@ -125,7 +125,7 @@ $ make install
 ```
 
 **Note:** Ensure that your `GOPROXY` is set with its default value for Go
-versions 1.13+ which is `https://proxy.golang.org,direct`.
+versions 1.15+ which is `https://proxy.golang.org,direct`.
 
 [homebrew_tool]:https://brew.sh/
 [git_tool]:https://git-scm.com/downloads
