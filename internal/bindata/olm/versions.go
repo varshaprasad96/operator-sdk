@@ -15,6 +15,7 @@
 package olm
 
 var availableVersions = map[string]struct{}{
+	"0.17.0": {},
 	"0.16.1": {},
 	"0.15.1": {},
 }
