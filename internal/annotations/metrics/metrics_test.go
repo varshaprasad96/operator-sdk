@@ -36,6 +36,5 @@ var _ = Describe("SDK Label helper functions", func() {
 			output := parseVersion(version)
 			Expect(output).To(Equal("v0.18.0+git"))
 		})
-
 	})
 })

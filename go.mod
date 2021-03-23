@@ -26,6 +26,7 @@ require (
 	golang.org/x/mod v0.3.0
 	golang.org/x/tools v0.0.0-20201224043029-2b0845dc783e
 	gomodules.xyz/jsonpatch/v3 v3.0.1
+	gopkg.in/yaml.v2 v2.3.0
 	helm.sh/helm/v3 v3.4.1
 	k8s.io/api v0.20.2
 	k8s.io/apiextensions-apiserver v0.20.2

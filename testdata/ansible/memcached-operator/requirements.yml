@@ -1,6 +1,10 @@
 ---
 collections:
   - name: community.kubernetes
+<<<<<<< HEAD
     version: "==1.1.1"
+=======
+    version: "1.1.1"
+>>>>>>> 77760f7b... Pin ansible galaxy installs (#4529)
   - name: operator_sdk.util
     version: "0.1.0"
