@@ -32,6 +32,7 @@ import (
 	"github.com/operator-framework/operator-sdk/internal/cmd/operator-sdk/cleanup"
 	"github.com/operator-framework/operator-sdk/internal/cmd/operator-sdk/generate"
 	"github.com/operator-framework/operator-sdk/internal/cmd/operator-sdk/olm"
+	"github.com/operator-framework/operator-sdk/internal/cmd/operator-sdk/pkgmantobundle"
 	"github.com/operator-framework/operator-sdk/internal/cmd/operator-sdk/run"
 	"github.com/operator-framework/operator-sdk/internal/cmd/operator-sdk/scorecard"
 	"github.com/operator-framework/operator-sdk/internal/flags"
@@ -52,6 +53,7 @@ var (
 		olm.NewCmd(),
 		run.NewCmd(),
 		scorecard.NewCmd(),
+		pkgmantobundle.NewCmd(),
 	}
 	alphaCommands = []*cobra.Command{
 		config3alphato3.NewCmd(),
